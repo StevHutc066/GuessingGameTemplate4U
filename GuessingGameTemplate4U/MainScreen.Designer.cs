@@ -33,6 +33,7 @@
             this.inputBox = new System.Windows.Forms.TextBox();
             this.promptLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.guessLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // outputLabel
@@ -86,6 +87,17 @@
             this.titleLabel.TabIndex = 5;
             this.titleLabel.Text = "Guessing Game";
             // 
+            // guessLabel
+            // 
+            this.guessLabel.AutoSize = true;
+            this.guessLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guessLabel.ForeColor = System.Drawing.Color.White;
+            this.guessLabel.Location = new System.Drawing.Point(22, 77);
+            this.guessLabel.Name = "guessLabel";
+            this.guessLabel.Size = new System.Drawing.Size(150, 21);
+            this.guessLabel.TabIndex = 6;
+            this.guessLabel.Text = "Number of Guesses:";
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -94,10 +106,12 @@
             this.Controls.Add(this.outputLabel);
             this.Controls.Add(this.guessButton);
             this.Controls.Add(this.inputBox);
+            this.Controls.Add(this.guessLabel);
             this.Controls.Add(this.promptLabel);
             this.Controls.Add(this.titleLabel);
             this.Name = "MainScreen";
             this.Size = new System.Drawing.Size(300, 300);
+            this.Load += new System.EventHandler(this.MainScreen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,5 +124,6 @@
         private System.Windows.Forms.TextBox inputBox;
         private System.Windows.Forms.Label promptLabel;
         private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label guessLabel;
     }
 }

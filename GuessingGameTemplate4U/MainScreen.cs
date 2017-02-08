@@ -17,8 +17,8 @@ namespace GuessingGameTemplate4U
         //creates a random number between 1 and 100 and stores it in a global 
         //variable that can be used throughout the program 
         public static Random randNum = new Random();
-        int rand = randNum.Next(1, 101);
-
+        int rand = 55;
+        int guess;
         public MainScreen()
         {
             InitializeComponent();
@@ -26,33 +26,45 @@ namespace GuessingGameTemplate4U
 
         private void guessButton_Click(object sender, EventArgs e)
         {
-            
-            int guess = Convert.ToInt16(inputBox.Text);
-
-            //TODO add guess to List of guesses on Form1
-
-
-            if (guess < rand)
+            try
             {
-                outputLabel.Text = "Too Low!";
-            }
-            else if (guess > rand)
-            {
-                outputLabel.Text = "Too High!";
-            }
-            else
-            {
-                outputLabel.Text = "You Got it!";
-                Refresh();
-                Thread.Sleep(1000);
 
-                //TODO close this screen and open a Results Screen (you need to create this)
+                //copies user input into guess variable
+                guess = Convert.ToInt16(inputBox.Text);
 
+                //adds guess to List of guesses on Form1
+                Form1.guessList.Add(guess);
+
+                if (guess < rand)
+                {
+                    outputLabel.Text = "Too Low!";
+                }
+                else if (guess > rand)
+                {
+                    outputLabel.Text = "Too High!";
+                }
+                else
+                {
+                    outputLabel.Text = "You Got it!";
+                    Refresh();
+                    Thread.Sleep(1000);
+
+                    //closes this screen and opens a Results Screen
+                    Form f = this.FindForm();
+                    f.Controls.Remove(this);
+                    ResultsScreen rs = new ResultsScreen();
+                    f.Controls.Add(rs);
+                }
             }
+            catch { MessageBox.Show("OH NOS, YOU HAVE DONE IT THIS TIME!"); }
 
             inputBox.Text = "";
             inputBox.Focus();
         }
 
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
